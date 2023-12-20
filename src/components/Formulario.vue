@@ -1,5 +1,14 @@
 <script setup>
+import { reactive } from 'vue';
 
+    const paciente = reactive({
+        nombre: '',
+        propietario: '',
+        email: '',
+        alta: '',
+        sintomas: ''
+    })
+    
 </script>
 
 
@@ -18,7 +27,9 @@
                     Nombre Mascota
                 </label>
                 <input placeholder="Nombre de la mascota" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                    id="mascota" type="text">
+                    id="mascota" type="text" 
+                    v-model="paciente.nombre"
+                    >
             </div>
 
             <div class="mb-5">
@@ -26,7 +37,9 @@
                     Nombre Propietario
                 </label>
                 <input placeholder="Nombre del propietario" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                    id="propietario" type="text">
+                    id="propietario" type="text" 
+                    v-model="paciente.propietario"
+                    >
             </div>
 
             <div class="mb-5">
@@ -34,7 +47,9 @@
                     Email
                 </label>
                 <input placeholder="Email" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md" id="email"
-                    type="email">
+                    type="email"
+                    v-model="paciente.email"
+                    >
             </div>
 
             <div class="mb-5">
@@ -42,7 +57,9 @@
                     Alta
                 </label>
                 <input class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md" id="alta"
-                    type="date">
+                    type="date"
+                    v-model="paciente.alta"
+                    >
             </div>
 
             <div class="mb-5">
@@ -51,6 +68,8 @@
                 </label>
                 <textarea placeholder="Describe los sintomas del paciente" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md h-40" id="sintomas"
                     type="text" 
+                    v-model="paciente.sintomas"
+
                 />
             </div>
 
