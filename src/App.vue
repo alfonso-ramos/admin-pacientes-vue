@@ -13,6 +13,10 @@ import Formulario from './components/Formulario.vue'
   })
 
   const pacientes = ref([])
+
+  const guardarPaciente = () => {
+    pacientes.value.push(paciente)
+  }
 </script>
 
 <template>
@@ -27,6 +31,7 @@ import Formulario from './components/Formulario.vue'
         v-model:email="paciente.email"
         v-model:alta="paciente.alta"
         v-model:sintomas="paciente.sintomas"
+        @guardar-paciente='guardarPaciente'
       />
       <div class="md:1/2 md:h-screen overflow-y-scroll">
         <h3 class="font-black text-3xl text-center">
