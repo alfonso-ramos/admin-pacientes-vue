@@ -47,7 +47,15 @@ const validar = () => {
         return
     }
     emit('guardar-paciente')
-    
+    alerta.mensaje = "Paciente almacenado correctamente"
+    alerta.tipo = 'exito'
+
+    setTimeout(() => {
+        Object.assign(alerta, {
+            tipo: '',
+            mensaje: ''
+        })
+    }, 3000)
 }
 </script>
 
@@ -74,12 +82,8 @@ const validar = () => {
                 <label for="propietario" class="block text-gray-700 uppercase font-bold">
                     Nombre Propietario
                 </label>
-                <input 
-                    placeholder="Nombre del propietario" 
-                    class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                    id="propietario" 
-                    type="text" 
-                    :value="propietario" 
+                <input placeholder="Nombre del propietario" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                    id="propietario" type="text" :value="propietario"
                     @input="$emit('update:propietario', $event.target.value)">
             </div>
 
@@ -87,24 +91,15 @@ const validar = () => {
                 <label for="email" class="block text-gray-700 uppercase font-bold">
                     Email
                 </label>
-                <input 
-                    placeholder="Email" 
-                    class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md" 
-                    id="email"
-                    type="email" 
-                    :value="email"  
-                    @input="$emit('update:email', $event.target.value)">
+                <input placeholder="Email" class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md" id="email"
+                    type="email" :value="email" @input="$emit('update:email', $event.target.value)">
             </div>
 
             <div class="mb-5">
                 <label for="alta" class="block text-gray-700 uppercase font-bold">
                     Alta
                 </label>
-                <input 
-                    class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md" 
-                    id="alta" 
-                    type="date" 
-                    :value="alta"
+                <input class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md" id="alta" type="date" :value="alta"
                     @input="$emit('update:alta', $event.target.value)">
             </div>
 
@@ -112,13 +107,9 @@ const validar = () => {
                 <label for="sintomas" class="block text-gray-700 uppercase font-bold">
                     sintomas
                 </label>
-                <textarea 
-                    placeholder="Describe los sintomas del paciente"
-                    class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md h-40" 
-                    id="sintomas" 
-                    type="text" 
-                    :value="sintomas"
-                    @input="$emit('update:sintomas', $event.target.value)" />
+                <textarea placeholder="Describe los sintomas del paciente"
+                    class="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md h-40" id="sintomas" type="text"
+                    :value="sintomas" @input="$emit('update:sintomas', $event.target.value)" />
             </div>
 
             <input type="submit"
