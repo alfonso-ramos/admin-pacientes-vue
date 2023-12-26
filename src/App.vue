@@ -4,20 +4,34 @@ import Header from './components/Header.vue';
 import Formulario from './components/Formulario.vue'
 import Paciente from './components/Paciente.vue'
 
-  // Stata global
-  const paciente = reactive({
+// Stata global
+const paciente = reactive({
+  nombre: '',
+  propietario: '',
+  email: '',
+  alta: '',
+  sintomas: ''
+})
+
+const pacientes = ref([])
+
+const guardarPaciente = () => {
+  pacientes.value.push({ ...paciente })
+
+  // paciente.nombre = ''
+  // paciente.propietario = ''
+  // paciente.email = ''
+  // paciente.alta = ''
+  // paciente.sintomas = ''
+
+  Object.assign(paciente, {
     nombre: '',
     propietario: '',
     email: '',
     alta: '',
     sintomas: ''
   })
-
-  const pacientes = ref([])
-
-  const guardarPaciente = () => {
-    pacientes.value.push(paciente)
-  }
+}
 </script>
 
 <template>
@@ -26,14 +40,9 @@ import Paciente from './components/Paciente.vue'
     <Header />
 
     <div class="mt-12 md:flex">
-      <Formulario 
-        v-model:nombre="paciente.nombre"
-        v-model:propietario="paciente.propietario"
-        v-model:email="paciente.email"
-        v-model:alta="paciente.alta"
-        v-model:sintomas="paciente.sintomas"
-        @guardar-paciente='guardarPaciente'
-      />
+      <Formulario v-model:nombre="paciente.nombre" v-model:propietario="paciente.propietario"
+        v-model:email="paciente.email" v-model:alta="paciente.alta" v-model:sintomas="paciente.sintomas"
+        @guardar-paciente='guardarPaciente' />
       <div class="md:1/2 md:h-screen overflow-y-scroll">
         <h3 class="font-black text-3xl text-center">
           Administra tus pacientes
@@ -43,11 +52,8 @@ import Paciente from './components/Paciente.vue'
           <p class="text-lg mt-5 text-center mb-10">
             Información de
             <span class="text-indigo-600 font-bold">pacientes</span>
-        </p>
-          <Paciente
-            v-for="paciente in pacientes"
-            :paciente="paciente"
-          />
+          </p>
+          <Paciente v-for="paciente in pacientes" :paciente="paciente" />
         </div>
         <p v-else class="mt-20 text-2xl text-center">No hay pacientes</p>
       </div>
